@@ -1,3 +1,4 @@
+// importando a biblioteca a biblioteca mysql2
 const mysql = require("mysql2/promise");
 
 const pool = mysql.createPool({
@@ -7,7 +8,7 @@ const pool = mysql.createPool({
   port: 3306,
   database: "es",
   waitForConnections: true,
-  connectAtributes: 10,
+  connectAttributes: 10,
   queueLimit: 0
 });
 

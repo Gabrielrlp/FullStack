@@ -1,11 +1,11 @@
-const mysql2 = require('mysql2/promise');
+const mysql2 = require('mysql2/promise')
 
 const pool = mysql2.createPool({
     host: 'localhost',
     user: 'root',
     password: '1234',
     port: '3306',
-    database: 'vovo',
+    database: 'vovo2',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0

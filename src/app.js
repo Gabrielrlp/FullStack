@@ -2,10 +2,10 @@ const express = require('express')
 const path = require('path')
 const app = express()
 
+const pedidosRoutes = require('./routes/pedidosRoutes')
+
 // midware que precisa ser declarada para ser enviar um corpo em uma requisicao
 app.use(express.json())
-
-const pedidosRoutes = require('./routes/pedidosRoutes')
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 

@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
 })
 
 // parte nova
-
 app.use('/', pedidosRoutes)
 
 module.exports = app

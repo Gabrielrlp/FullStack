@@ -21,7 +21,7 @@ async function cadastrarPedidos(req, res) {
     try {
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const pedido = (req.body.email || "").trim()
+        const pedido = (req.body.pedido || "").trim()
 
         // tratamento de erro para caso nao tenha algum desses cadastros
         if (!nome || !email || !pedido) {
@@ -36,7 +36,7 @@ async function cadastrarPedidos(req, res) {
     } catch (erro) {
         console.error('Erro interno:', erro)
 
-        return req.res.status(500).json({erro: 'Erro ao inserir dados no banco'})
+        return res.status(500).json({erro: 'Erro ao inserir dados no banco'})
     }
 }
 
@@ -46,7 +46,7 @@ async function alterarPedidos(req, res) {
 
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const pedido = (req.body.email || "").trim()
+        const pedido = (req.body.pedido || "").trim()
 
         // tratamento de erro para caso nao tenha algum desses cadastros
         if (!nome || !email || !pedido) {
@@ -61,7 +61,7 @@ async function alterarPedidos(req, res) {
     } catch (erro) {
         console.error('Erro interno:', erro)
 
-        return req.res.status(500).json({erro: 'Erro ao alteradas dados no banco'})
+        return res.status(500).json({erro: 'Erro ao alteradas dados no banco'})
     }
 }
 
@@ -76,7 +76,7 @@ async function deletarPedidos(req, res) {
     } catch (erro) {
         console.error('Erro interno:', erro)
 
-        return req.res.status(500).json({erro: 'Erro ao deletar pedido'})
+        return res.status(500).json({erro: 'Erro ao deletar pedido'})
     }
 }
 

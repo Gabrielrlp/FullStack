@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
 })
 
 // parte nova
-app.use('/', pedidosRoutes)
+app.use('/pedidos', pedidosRoutes)
 
 module.exports = app

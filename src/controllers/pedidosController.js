@@ -61,7 +61,7 @@ async function alterarPedidos(req, res) {
     } catch (erro) {
         console.error('Erro interno:', erro)
 
-        return res.status(500).json({erro: 'Erro ao alteradas dados no banco'})
+        return res.status(500).json({erro: 'Erro ao alterar dados no banco'})
     }
 }
 

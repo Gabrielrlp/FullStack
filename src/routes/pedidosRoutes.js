@@ -3,14 +3,14 @@ const router = express.Router()
 const pedidosController = require('../controllers/pedidosController')
 
 // parte de conexao sem logica
-router.get('/pedidos', pedidosController.buscarPedidos)
+router.get('/', pedidosController.buscarPedidos)
 
-router.post('/pedidos', pedidosController.cadastrarPedidos)
+router.post('/', pedidosController.cadastrarPedidos)
 
 // esse /:id serve para mudar no link http para o id certo
-router.put('/pedidos/:id', pedidosController.alterarPedidos)
+router.put('/:id', pedidosController.alterarPedidos)
 
 // esse /:id serve para levar o link http para o id certo
-router.delete('/pedidos/:id', pedidosController.deletarPedidos)
+router.delete('/:id', pedidosController.deletarPedidos)
 
 module.exports = router

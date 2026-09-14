@@ -20,7 +20,7 @@ async function inserirPedidos(req, res) {
             return res.send('Todos os campos sao obrigatorios')
         }
 
-        await pool.execute('INSERT INTO pedidos (nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)', [nome, email, pedidos])
+        await pool.execute('INSERT INTO pedidos(nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)', [nome, email, pedidos])
 
         return res.send('Dados inseridos com sucesso')
 

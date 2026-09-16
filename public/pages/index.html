@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Doces da Vovó</title>
+</head>
+<body>
+    <h1>Doces da Vovó</h1>
+    <form id="formulario">
+        <label for="nome">nome</label>
+        <input id="nome"  required placeholder="Digite seu nome:" type="text">
+        <label for="email">email</label>
+        <input id="email"  required placeholder="Digite seu email:" type="email">
+        <label for="pedido">pedido</label>
+        <textarea  required placeholder="Digite seu pedido:" name="pedido" id="pedido"></textarea>
+        <button id="button" type="submit">Enviar</button>
+    </form>
+    <ul id="listarPedidos"></ul>
+    <script src="../js/script.js"></script>
+</body>
+</html>

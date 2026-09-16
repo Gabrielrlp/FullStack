@@ -1,14 +1,14 @@
-const express = require('express')
+import express from "express"
+import { buscarPedidos } from "../controllers/pedidosController.js"
+import { cadastrarPedidos } from "../controllers/pedidosController.js"
+import { alterarPedidos } from "../controllers/pedidosController.js"
+import { deletarPedidos } from "../controllers/pedidosController.js"
+
 const router = express.Router()
 
-const pedidosControllers = require('../controllers/pedidosControllers')
+router.get("/", buscarPedidos)
+router.post("/", cadastrarPedidos)
+router.put("/:id", alterarPedidos)
+router.delete("/:id", deletarPedidos)
 
-router.get('/', pedidosControllers.buscarPedidos)
-
-router.post('/', pedidosControllers.inserirPedidos)
-
-router.put('/:id', pedidosControllers.alterarPedidos)
-
-router.delete('/:id', pedidosControllers.deletarPedidos)
-
-module.exports = router
+export default router

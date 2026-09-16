@@ -1,6 +1,7 @@
-const server = require('../projeto.0/src/app')
+import app from "./src/app.js"
+
 const port = 3000
 
-server.listen(port, () => {
-    console.log(`Voce sera redirecionado para http://localhost:${port}`)
+app.listen(port, ()=>{
+    console.log(`O servidor está rodando em http://localhost:${port}`)
 })

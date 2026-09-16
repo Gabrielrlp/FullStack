@@ -1,19 +1,18 @@
-const express = require('express')
-const path = require('path')
-const cors = require('cors')
-const app = express()
+import express from "express"
+import cors from "cors"
+import path from"path"
+import router from "./routes/pedidosRoutes.js"
 
-const pedidosRoutes = require('./routes/pedidosRoutes')
+const app = express()
 
 app.use(cors())
 app.use(express.json())
 
-app.use(express.static(path.join(__dirname, '..', 'public')))
+app.use(express.static(path.join(process.cwd(), "public")))
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'))
+app.get("/", (req,res)=>{
+    res.sendFile(path.join(process.cwd(), "public", "pages", "index.html"))
 })
 
-app.use('/pedidos', pedidosRoutes)
-
-module.exports = app
+app.use("/pedidos", router)
+export default app 

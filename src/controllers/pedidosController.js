@@ -13,13 +13,13 @@ async function cadastrarPedidos(req, res) {
     try {
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const observ = (req.body.observ || "").trim()
+        const pedidos = (req.body.pedidos || "").trim()
 
-        if (!nome, !email, !observ) {
+        if (!nome, !email, !pedidos) {
             res.json("Todos os campos são obrigatórios!")
         }
 
-        await pool.execute("INSERT INTO pedidos (nome, email, observ) VALUES (? , ?,  ?)", [nome, email, observ])
+        await pool.execute("INSERT INTO pedidos (nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)", [nome, email, pedidos])
 
         res.json("O pedido foi cadastrado com sucesso!")
     } catch (e) {
@@ -32,13 +32,13 @@ async function alterarPedidos(req, res) {
 
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const observ = (req.body.observ || "").trim()
+        const pedidos = (req.body.pedidos || "").trim()
 
-        if (!nome, !email, !observ) {
+        if (!nome, !email, !pedidos) {
             res.json("Todos os campos são obrigatórios!")
         }
 
-        await pool.execute("UPDATE pedidos SET nome =?, email = ?, observ = ? WHERE id = ?", [nome, email, observ, id])
+        await pool.execute("UPDATE pedidos SET nome_pedidos=?, email_pedidos=?,  sugestoes_pedidos=? WHERE id_pedidos = ?", [nome, email, pedidos, id])
 
         res.json("O pedido foi alterado com sucesso!")
     } catch (e) {
@@ -49,11 +49,17 @@ async function deletarPedidos(req, res) {
     try {
         const id = req.params.id
 
-        await pool.execute("DELETE FROM pedidos WHERE id = ?", [id])
+        await pool.execute("DELETE FROM pedidos WHERE id_pedidos = ?", [id])
 
         res.json("O pedido foi deletado com sucesso!")
     } catch (error) {
         return res.status(501).json({ erro: "Erro ao deletar pedidos no banco de dados" })
     }
 }
-export { buscarPedidos, cadastrarPedidos, alterarPedidos, deletarPedidos }
+
+export { 
+    buscarPedidos, 
+    cadastrarPedidos, 
+    alterarPedidos, 
+    deletarPedidos 
+}

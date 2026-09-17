@@ -1,4 +1,4 @@
-import pool from "../config/db.js"
+const pool = require('../config/db')
 
 async function buscarPedidos(req, res) {
     try {
@@ -9,19 +9,22 @@ async function buscarPedidos(req, res) {
         return res.status(501).json({ erro: "Erro ao encontrar pedidos no banco de dados" })
     }
 }
-async function cadastrarPedidos(req, res) {
+async function inserirPedidos(req, res) {
     try {
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const pedidos = (req.body.pedidos || "").trim()
+        const sugestoes_pedidos = (req.body.sugestoes_pedidos || "").trim()
 
-        if (!nome, !email, !pedidos) {
+        if (!nome || !email || !sugestoes_pedidos) {
             res.json("Todos os campos são obrigatórios!")
         }
 
-        await pool.execute("INSERT INTO pedidos (nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)", [nome, email, pedidos])
+        await pool.execute("INSERT INTO pedidos (nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)", [nome, email, sugestoes_pedidos])
 
-        res.json("O pedido foi cadastrado com sucesso!")
+        return res.json({
+            mensagem: "Pedido foi cadastrado com sucesso!"
+        })
+
     } catch (e) {
         return res.status(501).json({ erro: "Erro ao cadastrar pedidos no banco de dados" })
     }
@@ -32,15 +35,17 @@ async function alterarPedidos(req, res) {
 
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const pedidos = (req.body.pedidos || "").trim()
+        const sugestoes_pedidos = (req.body.sugestoes_pedidos || "").trim()
 
-        if (!nome, !email, !pedidos) {
+        if (!nome, !email, !sugestoes_pedidos) {
             res.json("Todos os campos são obrigatórios!")
         }
 
-        await pool.execute("UPDATE pedidos SET nome_pedidos=?, email_pedidos=?,  sugestoes_pedidos=? WHERE id_pedidos = ?", [nome, email, pedidos, id])
+        await pool.execute("UPDATE pedidos SET nome_pedidos=?, email_pedidos=?,  sugestoes_pedidos=? WHERE id_pedidos = ?", [nome, email, sugestoes_pedidos, id])
 
-        res.json("O pedido foi alterado com sucesso!")
+        return res.json({
+            mensagem: "Pedido foi alterado com sucesso!"
+        })
     } catch (e) {
         return res.status(501).json({ erro: "Erro ao alterar pedidos no banco de dados" })
     }
@@ -51,15 +56,17 @@ async function deletarPedidos(req, res) {
 
         await pool.execute("DELETE FROM pedidos WHERE id_pedidos = ?", [id])
 
-        res.json("O pedido foi deletado com sucesso!")
+        return res.json({
+            mensagem: "Pedido foi deletado com sucesso!"
+        })
     } catch (error) {
         return res.status(501).json({ erro: "Erro ao deletar pedidos no banco de dados" })
     }
 }
 
-export { 
-    buscarPedidos, 
-    cadastrarPedidos, 
-    alterarPedidos, 
-    deletarPedidos 
+module.exports = {
+    buscarPedidos,
+    inserirPedidos,
+    alterarPedidos,
+    deletarPedidos
 }

@@ -27,7 +27,7 @@ async function cadastrarPedidos(req, res) {
     }
 }
 async function alterarPedidos(req, res) {
-    try {
+    try {   
         const id = req.params.id
 
         const nome = (req.body.nome || "").trim()

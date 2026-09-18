@@ -14,9 +14,9 @@ formulario.addEventListener('submit', async (evento) => {
 
     const nome = inputNome.value.trim()
     const email = inputEmail.value.trim()
-    const sugestoes_pedidos = inputPedido.value.trim()
+    const pedidos = inputPedido.value.trim()
 
-    if (!nome || !email || !sugestoes_pedidos) {
+    if (!nome || !email || !pedidos) {
         exibirMensagem('Todos os campos são obrigatórios', 'erro')
         return
     }
@@ -27,7 +27,7 @@ formulario.addEventListener('submit', async (evento) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({nome, email, sugestoes_pedidos})
+            body: JSON.stringify({nome, email, pedidos})
         })
 
         const dados = await resposta.json()

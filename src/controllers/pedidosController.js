@@ -5,62 +5,65 @@ async function buscarPedidos(req, res) {
         const [rows] = await pool.execute("SELECT * FROM pedidos")
 
         res.json(rows)
-    } catch (e) {
-        return res.status(501).json({ erro: "Erro ao encontrar pedidos no banco de dados" })
+    } catch (erro) {
+        return res.status(500).json({erro: "erro ao encontrar dados no banco"})
     }
 }
+
 async function inserirPedidos(req, res) {
     try {
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const sugestoes_pedidos = (req.body.sugestoes_pedidos || "").trim()
+        const pedidos = (req.body.pedidos || "").trim()
 
-        if (!nome || !email || !sugestoes_pedidos) {
-            res.json("Todos os campos são obrigatórios!")
+        if (!nome || !email || !pedidos) {
+            res.json({mensagem: "Todos os campos são obrigatorios"})
         }
 
-        await pool.execute("INSERT INTO pedidos (nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)", [nome, email, sugestoes_pedidos])
+        await pool.execute("INSERT INTO pedidos(nome_pedidos, email_pedidos, sugestoes_pedidos) VALUES (?,?,?)", [nome, email, pedidos])
 
         return res.json({
-            mensagem: "Pedido foi cadastrado com sucesso!"
+            mensagem: "Sucesso ao inserir os dados no banco"
         })
-
-    } catch (e) {
-        return res.status(501).json({ erro: "Erro ao cadastrar pedidos no banco de dados" })
+        
+    } catch (erro) {
+        return res.status(500).json({erro: "erro ao inserir dados no banco"})
     }
 }
+
 async function alterarPedidos(req, res) {
-    try {   
+    try {
         const id = req.params.id
 
         const nome = (req.body.nome || "").trim()
         const email = (req.body.email || "").trim()
-        const sugestoes_pedidos = (req.body.sugestoes_pedidos || "").trim()
+        const pedidos = (req.body.pedidos || "").trim()
 
-        if (!nome, !email, !sugestoes_pedidos) {
-            res.json("Todos os campos são obrigatórios!")
+        if (!nome || !email || !pedidos) {
+            res.json({mensagem: "Todos os campos são obrigatorios"})
         }
 
-        await pool.execute("UPDATE pedidos SET nome_pedidos=?, email_pedidos=?,  sugestoes_pedidos=? WHERE id_pedidos = ?", [nome, email, sugestoes_pedidos, id])
+        await pool.execute("UPDATE pedidos SET nome_pedidos=?, email_pedidos=?, sugestoes_pedidos=? WHERE id_pedidos=?", [nome, email, pedidos, id])
 
         return res.json({
-            mensagem: "Pedido foi alterado com sucesso!"
+            mensagem: "Sucesso ao alterar os dados no banco"
         })
-    } catch (e) {
-        return res.status(501).json({ erro: "Erro ao alterar pedidos no banco de dados" })
+    } catch (erro) {
+        return res.status(500).json({erro: "erro ao alterar dados no banco"})
     }
 }
+
 async function deletarPedidos(req, res) {
     try {
         const id = req.params.id
 
-        await pool.execute("DELETE FROM pedidos WHERE id_pedidos = ?", [id])
+        await pool.execute("DELETE FROM pedidos WHERE id_pedidos=?", [id])
 
         return res.json({
-            mensagem: "Pedido foi deletado com sucesso!"
+            mensagem: "Sucesso ao deletar os dados no banco"
         })
-    } catch (error) {
-        return res.status(501).json({ erro: "Erro ao deletar pedidos no banco de dados" })
+    } catch (erro) {
+        return res.status(500).json({erro: "erro ao deletar dados no banco"})
     }
 }
 

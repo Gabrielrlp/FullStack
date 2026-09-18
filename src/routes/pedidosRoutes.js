@@ -1,14 +1,14 @@
 const express = require('express')
-const pedidosControllers = require('../controllers/pedidosController')
+const pedidosController = require('../controllers/pedidosController')
 
 const router = express.Router()
 
-router.get("/", pedidosControllers.buscarPedidos)
+router.get('/', pedidosController.buscarPedidos)
 
-router.post("/", pedidosControllers.inserirPedidos)
+router.post('/', pedidosController.inserirPedidos)
 
-router.put("/:id", pedidosControllers.alterarPedidos)
+router.put('/:id', pedidosController.alterarPedidos)
 
-router.delete("/:id", pedidosControllers.deletarPedidos)
+router.delete('/:id', pedidosController.deletarPedidos)
 
 module.exports = router

@@ -46,7 +46,6 @@ formulario.addEventListener('submit', async (evento) => {
         console.error('Erro ao cadastrar pedido', erro)
         exibirMensagem('Erro ao cadastrar pedido', 'erro')
     }
-
 })
 
 async function carregarPedidos() {
@@ -69,7 +68,7 @@ async function carregarPedidos() {
             lista.textContent = `Nome = ${item.nome_pedidos} - Email = ${item.email_pedidos} - Pedido = ${item.sugestoes_pedidos}`
 
             listarPedidos.appendChild(lista)
-        });
+        })
 
         console.log()
     } catch (e) {
@@ -84,5 +83,5 @@ function exibirMensagem(texto, tipo) {
     setTimeout(() => {
         mensagem.textContent = ''
         mensagem.removeAttribute('data-tipo')
-    }, 4000);
+    }, 4000)
 }

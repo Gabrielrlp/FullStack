@@ -65,12 +65,23 @@ async function carregarPedidos() {
         resultado.forEach(item => {
             const lista = document.createElement("li")
 
+            const btnExcluir = document.createElement('button')
+            btnExcluir.textContent ='Excluir'
+
+            const btnEditar = document.createElement('button')
+            btnEditar.textContent = 'Editar'
+
             lista.textContent = `Nome = ${item.nome_pedidos} - Email = ${item.email_pedidos} - Pedido = ${item.sugestoes_pedidos}`
 
-            listarPedidos.appendChild(lista)
-        })
+            // ele pega o id do array e seta no botao para identificar qual pedido será excluido ao ser clicado no botão
+            btnExcluir.dataset.id = item.id
 
-        console.log()
+            listarPedidos.appendChild(lista)
+            lista.appendChild(btnExcluir)
+            lista.appendChild(btnEditar)
+
+            console.log(resultado)
+        })
     } catch (e) {
         console.error("Erro:", e)
     }

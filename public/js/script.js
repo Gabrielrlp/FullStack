@@ -76,6 +76,11 @@ async function carregarPedidos() {
             // ele pega o id do array e seta no botao para identificar qual pedido será excluido ao ser clicado no botão
             btnExcluir.dataset.id = item.id
 
+            btnExcluir.addEventListener('click', (evento) =>{
+                const id = evento.target.dataset.id
+                deletarPedidos(item.id)
+            })
+
             listarPedidos.appendChild(lista)
             lista.appendChild(btnExcluir)
             lista.appendChild(btnEditar)
@@ -84,6 +89,23 @@ async function carregarPedidos() {
         })
     } catch (e) {
         console.error("Erro:", e)
+    }
+}
+
+async function deletarPedidos(id) {
+    try {
+        const resposta = await fetch(`/pedidos/${id}`, {
+            method: 'DELETE'
+        })
+        const dados = await resposta.json()
+
+        exibirMensagem(dados.mensagem, 'Sucesso')
+
+        carregarPedidos()
+    } catch (erro) {
+        console.error('Erro ao deletar pedido', erro)
+
+        exibirMensagem('Erro ao deletar pedido do servidor', 'erro')
     }
 }
 

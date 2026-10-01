@@ -7,6 +7,9 @@ const button = document.getElementById("button")
 const url = "http://localhost:3000/pedidos"
 const mensagem = document.getElementById('exibirMensagem')
 
+// editando algum dos id do array para funcionar o botao 'editar' 
+let idEditando = null
+
 document.addEventListener('DOMContentLoaded', carregarPedidos)
 
 formulario.addEventListener('submit', async (evento) => {
@@ -18,6 +21,11 @@ formulario.addEventListener('submit', async (evento) => {
 
     if (!nome || !email || !pedidos) {
         exibirMensagem('Todos os campos são obrigatórios', 'erro')
+        return
+    }
+
+    if (idEditando !== null) {
+        await alterarPedidos(idEditando)
         return
     }
 
@@ -76,6 +84,15 @@ async function carregarPedidos() {
             // ele pega o id do array e seta no botao para identificar qual pedido será excluido ao ser clicado no botão
             btnExcluir.dataset.id_pedidos = item.id_pedidos
 
+            btnEditar.addEventListener('click', () =>{
+                inputNome.value = item.nome_pedidos
+                inputEmail.value = item.email_pedidos
+                inputPedido.value = item.sugestoes_pedidos
+
+                idEditando = item.id_pedidos
+                button.textContent = "Salvar"
+            })
+
             btnExcluir.addEventListener('click', (evento) =>{
                 const id = evento.target.dataset.id
                 deletarPedidos(item.id_pedidos)
@@ -85,11 +102,51 @@ async function carregarPedidos() {
             lista.appendChild(btnEditar)
             lista.appendChild(btnExcluir)
 
-
-            console.log(resultado)
         })
+
+        idEditando = null
+
+        button.textContent = "Enviar"
+
+        // limpa o formulario
+        formulario.reset()
     } catch (e) {
         console.error("Erro:", e)
+    }
+}
+
+async function alterarPedidos(id) {
+    const nome = inputNome.value.trim()
+    const email = inputEmail.value.trim()
+    const pedidos = inputPedido.value.trim()
+
+    if (!nome || !email || !pedidos) {
+        exibirMensagem('Todos os campos são obrigatórios', 'erro')
+        return
+    }
+    
+    try {
+        const resposta = await fetch(`/pedidos/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({nome, email, pedidos})
+        })
+
+        if (resposta.ok) {
+            exibirMensagem('Sugestão alterada com sucesso', 'Sucesso')
+        }
+
+        if (!resposta.ok) {
+            exibirMensagem('Erro ao inserir pedidos', 'erro')
+        }
+
+        const dados = await resposta.json()
+
+        carregarPedidos()
+    } catch (error) {
+        console.error('Erro ao alterar sugestões', e)
     }
 }
 

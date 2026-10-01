@@ -74,16 +74,17 @@ async function carregarPedidos() {
             lista.textContent = `Nome = ${item.nome_pedidos} - Email = ${item.email_pedidos} - Pedido = ${item.sugestoes_pedidos}`
 
             // ele pega o id do array e seta no botao para identificar qual pedido será excluido ao ser clicado no botão
-            btnExcluir.dataset.id = item.id
+            btnExcluir.dataset.id_pedidos = item.id_pedidos
 
             btnExcluir.addEventListener('click', (evento) =>{
                 const id = evento.target.dataset.id
-                deletarPedidos(item.id)
+                deletarPedidos(item.id_pedidos)
             })
 
             listarPedidos.appendChild(lista)
-            lista.appendChild(btnExcluir)
             lista.appendChild(btnEditar)
+            lista.appendChild(btnExcluir)
+
 
             console.log(resultado)
         })
@@ -116,5 +117,5 @@ function exibirMensagem(texto, tipo) {
     setTimeout(() => {
         mensagem.textContent = ''
         mensagem.removeAttribute('data-tipo')
-    }, 4000)
+    }, 6000)
 }

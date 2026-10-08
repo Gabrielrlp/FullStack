@@ -11,7 +11,7 @@ app.use('/pedidos', pedidosRoutes)
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
 app.get('/', (req, res) =>{
-    return res.sendFile(path.join(__dirname, 'views', 'index.html'))
+    return res.sendFile(path.join(__dirname, '../public/pages', 'index.html'))
 })
 
 module.exports = app

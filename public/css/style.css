@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+:root {
+    --cor-principal: #f5deb3;
+    --cor2: #724f37;
+    --fonte-principal: 'Satisfy', cursive;
+    --fonte-times: "Times New Roman", Times, serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--cor-principal);
+}
+
+header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: var(--cor2);
+}
+
+header h1{
+    font-size: 70px;
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    font-family: var(--fonte-principal);
+    color: white;
+    -webkit-text-stroke: 0.01px black;
+}
+
+.img{
+    width: 200px;
+    height: 200px;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+main span{
+    color: red;
+}
+
+main h2{
+    font-size: 45px;
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    font-family: var(--fonte-principal);
+    background-color: var(--cor2);
+  color: white;
+}
+
+.titulo-form{
+    position: absolute;
+    color: var(--cor-principal);
+    font-family: var(--fonte-principal);
+    z-index:10;
+    left: 44%;
+    top: 330px;
+    font-size: 28px;
+}
+
+form{
+    background-color: var(--cor2);
+    margin: 100px 500px;
+    padding: 100px;
+    border-radius: 50px;
+    border: 3px solid #492409;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+form label{
+    color: white;
+    font-size: 25px;
+}
+
+form input, textarea{
+    padding: 25px 150px;
+    margin: 15px;
+    border-radius: 10px;
+    border: none;
+}
+
+form button{
+    padding: 13px 18px;
+    font-size: 18px;
+    border-radius: 22px;
+    color: black;
+    background-color: var(--cor-principal);
+    border: 2px solid #582d0f;
+}
+
+form button:hover{
+    background-color: rgb(144, 16, 218);
+    border: 2px solid white;
+    color: white;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+.botao{
+    text-align: center;
+}
+
+ul{
+    background-color: #724f37;
+    margin: 100px 500px;
+    padding: 100px;
+    border-radius: 50px;
+    border: 2px solid #492409;
+    font-size: 25px;
+}
+
+ul button{
+    padding: 13px 18px;
+    font-size: 18px;
+    border-radius: 22px;
+    color: black;
+    background-color: var(--cor-principal);
+    border: 3px solid #582d0f;
+}
+
+li{
+    color: white;
+}
+
+footer h2{
+    font-size: 25px;
+    text-align: center;
+    padding: 20px 10px;
+    font-family: var(--fonte-principal);
+    color: white;
+    background-color: var(--cor2);
+}
+
+form ::placeholder{
+    font-size: 20px;
+    font-family: var(--fonte-times);
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Doces da Vovó</title>
+</head>
+<body>
+    <header>
+        <div class="img">
+            <img src="../assets/fotoHeader.png" alt="">
+        </div>
+        <h1>Doces da Vovó</h1>
+    </header>
+    <main>
+        <section class="titulo-form">
+            <h3>Faça seu pedido:</h3>
+        </section>
+        <form id="formulario">
+            <section>
+                <label for="nome"><span>*</span>Nome:</label>
+                <input id="nome"  required placeholder="Digite seu nome:" type="text">
+            </section>
+            <section>
+                <label for="email"><span>*</span>Email:</label>
+                <input  type="email" id="email"  required placeholder="Digite seu email:">
+            </section>
+            <section>
+                <label for="pedido"><span>*</span>Pedido:</label>
+                <textarea  required placeholder="Digite seu pedido:" name="pedido" id="pedidos"></textarea>
+            </section>
+            
+            <section class="botao">
+                <button id="button" type="submit" class="button">Enviar</button>
+            </section>
+        </form>
+
+        <p id="exibirMensagem"></p>
+
+        <h2>Lista de Pedidos</h2>
+        <ul id="listarPedidos"></ul>
+    </main>
+    <footer>
+        <h2>- Site para pedidos na loja Doces da Vovó -</h2>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+</html>

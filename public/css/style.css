@@ -32,6 +32,21 @@ header h1{
     -webkit-text-stroke: 0.01px black;
 }
 
+header button{
+    font-size: 16px;
+    padding: 18px 8px;
+    color: white;
+    background-color: #492409;
+    -webkit-text-stroke: 0.01px black;
+    border-radius: 28px;
+}
+
+header button:hover{
+    background-color: var(--cor-principal);
+    border: 2px solid white;
+    color: black;
+}
+
 .img{
     width: 200px;
     height: 200px;
@@ -98,7 +113,7 @@ form button{
 }
 
 form button:hover{
-    background-color: rgb(144, 16, 218);
+    background-color: #582d0f;
     border: 2px solid white;
     color: white;
 }
@@ -130,12 +145,18 @@ ul button{
     border: 3px solid #582d0f;
 }
 
+ul button:hover{
+    background-color: #582d0f;
+    border: 2px solid white;
+    color: white;
+}
+
 li{
     color: white;
 }
 
 footer h2{
-    font-size: 25px;
+    font-size: 28px;
     text-align: center;
     padding: 20px 10px;
     font-family: var(--fonte-principal);

@@ -70,7 +70,7 @@ async function carregarPedidos() {
     console.log(resultado);
 
     resultado.forEach((item) => {
-      const lista = document.createElement("li");
+      const lista = document.createElement("tr");
 
       const btnExcluir = document.createElement("button");
       btnExcluir.textContent = "Excluir";
@@ -78,8 +78,20 @@ async function carregarPedidos() {
       const btnEditar = document.createElement("button");
       btnEditar.textContent = "Editar";
 
-      lista.textContent = `Nome = ${item.nome_pedidos} - Email = ${item.email_pedidos} - Pedido = ${item.sugestoes_pedidos}`;
+      lista.innerHTML = `
+        <td>${item.nome_pedidos}</td>
+        <td>${item.email_pedidos}</td>
+        <td>${item.sugestoes_pedidos}</td>
+        <td class="acoes"></td>
+      `
 
+      const acoes = lista.querySelector('.acoes')
+
+      acoes.appendChild(btnEditar)
+      acoes.appendChild(btnExcluir)
+
+      listarPedidos.appendChild(lista)
+      
       // ele pega o id do array e seta no botao para identificar qual pedido será excluido ao ser clicado no botão
       btnExcluir.dataset.id_pedidos = item.id_pedidos;
 
@@ -97,9 +109,6 @@ async function carregarPedidos() {
         deletarPedidos(item.id_pedidos);
       });
 
-      listarPedidos.appendChild(lista);
-      lista.appendChild(btnEditar);
-      lista.appendChild(btnExcluir);
     });
 
     idEditando = null;

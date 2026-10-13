@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--cor-principal);
 }
@@ -32,21 +36,6 @@ header h1 {
   -webkit-text-stroke: 0.01px black;
 }
 
-header button {
-  font-size: 16px;
-  padding: 18px 8px;
-  color: white;
-  background-color: #492409;
-  -webkit-text-stroke: 0.01px black;
-  border-radius: 28px;
-}
-
-header button:hover {
-  background-color: var(--cor-principal);
-  border: 2px solid white;
-  color: black;
-}
-
 .img {
   width: 200px;
   height: 200px;
@@ -56,6 +45,28 @@ img {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
+}
+
+header div button{
+  padding: 14px 48px;
+  font-family: var(--fonte-principal);
+  font-size: 20px;
+  background-color: var(--cor-principal);
+  -webkit-text-stroke: 0.01px black;
+  border-radius: 28px;
+  color: black;
+}
+
+header button:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: #492409;
+}
+
+.caixa3Header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main span {
@@ -117,6 +128,10 @@ form button:hover {
   background-color: #582d0f;
   border: 2px solid white;
   color: white;
+}
+
+#formulario {
+    scroll-margin-top: 100px;
 }
 
 section {

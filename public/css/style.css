@@ -200,6 +200,31 @@ table button:hover {
   color: white;
 }
 
+#exibirMensagem {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+#exibirmensagem[data-tipo="Sucesso"],
+#exibirMensagem[data-tipo="Erro"] {
+  box-shadow: 0 3px 10px Orgba(0, 0, 0, 0.088);
+}
+
+#exibirMensagem[data-tipo="Sucesso"] {
+  color: #21643a;
+  background-color: #e8f7ec;
+  border: 1px solid #a8dfb5;
+}
+
+#exibirMensagem[data-tipo="Erro"] {
+  color: #9f3038;
+  background-color: #fff0f0;
+  border: 1px solid #f0b5b8;
+}
+
 footer h2 {
   font-size: 28px;
   text-align: center;

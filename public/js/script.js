@@ -1,32 +1,32 @@
-const formulario = document.getElementById("formulario");
-const inputNome = document.getElementById("nome");
-const inputEmail = document.getElementById("email");
-const inputPedido = document.getElementById("pedidos");
-const listarPedidos = document.getElementById("listarPedidos");
-const button = document.getElementById("button");
-const url = "http://localhost:3000/pedidos";
-const mensagem = document.getElementById("exibirMensagem");
+const formulario = document.getElementById("formulario")
+const inputNome = document.getElementById("nome")
+const inputEmail = document.getElementById("email")
+const inputPedido = document.getElementById("pedidos")
+const listarPedidos = document.getElementById("listarPedidos")
+const button = document.getElementById("button")
+const url = "http://localhost:3000/pedidos"
+const mensagem = document.getElementById("exibirMensagem")
 
 // editando algum dos id do array para funcionar o botao 'editar'
-let idEditando = null;
+let idEditando = null
 
-document.addEventListener("DOMContentLoaded", carregarPedidos);
+document.addEventListener("DOMContentLoaded", carregarPedidos)
 
 formulario.addEventListener("submit", async (evento) => {
-  evento.preventDefault();
+  evento.preventDefault()
 
-  const nome = inputNome.value.trim();
-  const email = inputEmail.value.trim();
-  const pedidos = inputPedido.value.trim();
+  const nome = inputNome.value.trim()
+  const email = inputEmail.value.trim()
+  const pedidos = inputPedido.value.trim()
 
   if (!nome || !email || !pedidos) {
-    exibirMensagem("Todos os campos são obrigatórios", "erro");
-    return;
+    exibirMensagem("Todos os campos são obrigatórios", "erro")
+    return
   }
 
   if (idEditando !== null) {
-    await alterarPedidos(idEditando);
-    return;
+    await alterarPedidos(idEditando)
+    return
   }
 
   try {
@@ -36,47 +36,47 @@ formulario.addEventListener("submit", async (evento) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ nome, email, pedidos }),
-    });
+    })
 
-    const dados = await resposta.json();
+    const dados = await resposta.json()
 
     if (!resposta.ok) {
-      exibirMensagem(dados.mensagem || "Erro na resposta do back-end", "erro");
-      return;
+      exibirMensagem(dados.mensagem || "Erro na resposta do back-end", "erro")
+      return
     }
 
     exibirMensagem(dados.mensagem, "Sucesso");
-    formulario.reset();
+    formulario.reset()
 
-    carregarPedidos();
+    carregarPedidos()
   } catch (erro) {
-    console.error("Erro ao cadastrar pedido", erro);
-    exibirMensagem("Erro ao cadastrar pedido", "erro");
+    console.error("Erro ao cadastrar pedido", erro)
+    exibirMensagem("Erro ao cadastrar pedido", "erro")
   }
 });
 
 async function carregarPedidos() {
   try {
-    const resposta = await fetch(url);
+    const resposta = await fetch(url)
 
     if (!resposta.ok) {
-      throw new Error(`Resposta do status: ${resposta.status}`);
+      throw new Error(`Resposta do status: ${resposta.status}`)
     }
 
-    const resultado = await resposta.json();
+    const resultado = await resposta.json()
 
-    listarPedidos.innerHTML = "";
+    listarPedidos.innerHTML = ""
 
-    console.log(resultado);
+    console.log(resultado)
 
     resultado.forEach((item) => {
-      const lista = document.createElement("tr");
+      const lista = document.createElement("tr")
 
-      const btnExcluir = document.createElement("button");
-      btnExcluir.textContent = "Excluir";
+      const btnExcluir = document.createElement("button")
+      btnExcluir.textContent = "Excluir"
 
-      const btnEditar = document.createElement("button");
-      btnEditar.textContent = "Editar";
+      const btnEditar = document.createElement("button")
+      btnEditar.textContent = "Editar"
 
       lista.innerHTML = `
         <td>${item.nome_pedidos}</td>
@@ -100,36 +100,36 @@ async function carregarPedidos() {
         inputEmail.value = item.email_pedidos;
         inputPedido.value = item.sugestoes_pedidos;
 
-        idEditando = item.id_pedidos;
-        button.textContent = "Salvar";
-      });
+        idEditando = item.id_pedidos
+        button.textContent = "Salvar"
+      })
 
       btnExcluir.addEventListener("click", (evento) => {
-        const id = evento.target.dataset.id;
-        deletarPedidos(item.id_pedidos);
-      });
+        const id = evento.target.dataset.id
+        deletarPedidos(item.id_pedidos)
+      })
 
-    });
+    })
 
-    idEditando = null;
+    idEditando = null
 
-    button.textContent = "Enviar";
+    button.textContent = "Enviar"
 
     // limpa o formulario
-    formulario.reset();
+    formulario.reset()
   } catch (e) {
-    console.error("Erro:", e);
+    console.error("Erro:", e)
   }
 }
 
 async function alterarPedidos(id) {
-  const nome = inputNome.value.trim();
-  const email = inputEmail.value.trim();
-  const pedidos = inputPedido.value.trim();
+  const nome = inputNome.value.trim()
+  const email = inputEmail.value.trim()
+  const pedidos = inputPedido.value.trim()
 
   if (!nome || !email || !pedidos) {
-    exibirMensagem("Todos os campos são obrigatórios", "erro");
-    return;
+    exibirMensagem("Todos os campos são obrigatórios", "erro")
+    return
   }
 
   try {
@@ -139,21 +139,21 @@ async function alterarPedidos(id) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ nome, email, pedidos }),
-    });
+    })
 
     if (resposta.ok) {
-      exibirMensagem("Sugestão alterada com sucesso", "Sucesso");
+      exibirMensagem("Sugestão alterada com sucesso", "Sucesso")
     }
 
     if (!resposta.ok) {
-      exibirMensagem("Erro ao inserir pedidos", "erro");
+      exibirMensagem("Erro ao inserir pedidos", "erro")
     }
 
-    const dados = await resposta.json();
+    const dados = await resposta.json()
 
-    carregarPedidos();
+    carregarPedidos()
   } catch (error) {
-    console.error("Erro ao alterar sugestões", e);
+    console.error("Erro ao alterar sugestões", e)
   }
 }
 
@@ -161,25 +161,25 @@ async function deletarPedidos(id) {
   try {
     const resposta = await fetch(`/pedidos/${id}`, {
       method: "DELETE",
-    });
-    const dados = await resposta.json();
+    })
+    const dados = await resposta.json()
 
-    exibirMensagem(dados.mensagem, "Sucesso");
+    exibirMensagem(dados.mensagem, "Sucesso")
 
-    carregarPedidos();
+    carregarPedidos()
   } catch (erro) {
-    console.error("Erro ao deletar pedido", erro);
+    console.error("Erro ao deletar pedido", erro)
 
-    exibirMensagem("Erro ao deletar pedido do servidor", "erro");
+    exibirMensagem("Erro ao deletar pedido do servidor", "erro")
   }
 }
 
 function exibirMensagem(texto, tipo) {
-  mensagem.textContent = texto;
-  mensagem.dataset.tipo = tipo;
+  mensagem.textContent = texto
+  mensagem.dataset.tipo = tipo
 
   setTimeout(() => {
-    mensagem.textContent = "";
-    mensagem.removeAttribute("data-tipo");
-  }, 6000);
+    mensagem.textContent = ""
+    mensagem.removeAttribute("data-tipo")
+  }, 6000)
 }

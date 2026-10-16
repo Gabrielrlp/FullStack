@@ -1,17 +1,17 @@
-const express = require("express");
-const path = require("path");
-const app = express();
+const express = require("express")
+const path = require("path")
+const app = express()
 
-const pedidosRoutes = require("./routes/pedidosRoutes");
+const pedidosRoutes = require("./routes/pedidosRoutes")
 
-app.use(express.json());
+app.use(express.json())
 
-app.use("/pedidos", pedidosRoutes);
+app.use("/pedidos", pedidosRoutes)
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.join(__dirname, "..", "public")))
 
 app.get("/", (req, res) => {
-  return res.sendFile(path.join(__dirname, "../public/pages", "index.html"));
-});
+  return res.sendFile(path.join(__dirname, "../public/pages", "index.html"))
+})
 
-module.exports = app;
+module.exports = app
